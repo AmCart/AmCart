@@ -1,0 +1,40 @@
+{
+  "products": [
+      {
+      "id": 1,
+      "Image":"",
+      "Label": "Product001",
+      "OldCost": 10.0,
+      "NewCost": 10.0,
+      "Name": "P1",
+      "Rating" : 1
+      },
+      {
+      "id": 2,
+      "Image":"",
+      "Label": "Product002",
+      "OldCost": 10.0,
+      "NewCost": 10.0,
+      "Name": "P2",
+      "Rating" : 2
+      },   
+      {
+        "id": 3,
+        "Image":"",
+        "Label": "Product003",
+        "OldCost": 10.0,
+        "NewCost": 10.0,
+        "Name": "P3",
+        "Rating" : 2
+        }, 
+        {
+          "id": 4,
+          "Image":"",
+          "Label": "Product004",
+          "OldCost": 10.0,
+          "NewCost": 10.0,
+          "Name": "P4",
+          "Rating" : 2
+          } 
+  ]
+}
