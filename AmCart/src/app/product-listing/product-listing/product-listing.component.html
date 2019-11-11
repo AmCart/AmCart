@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="gap-50"></div>
+    <div class="row">
+        <ul>
+            <li *ngFor="let product of productService.products$|async">
+                 <div class="col-md-3 col-sm-6 pl-item">
+                    <figure>
+                      <a href="#">
+                        <img src='{{product.Image}}'>
+                      </a>
+                      <label *ngIf='product.Label' class="pl-badge">{{product.Label}}</label>
+                    </figure>
+                    <div class="pl-caption">
+                      <p class="pl-price-block">
+                        <span *ngIf='product.OldCost' class="pl-price-old">Old Cost : $ {{product.OldCost}}</span>
+                        <span class="pl-price">New Cost : $ {{ product.NewCost }}</span>
+                      </p>
+                      <p class="pl-name">Product Name : {{ product.Name }}</p>
+                      <p class="pl-name">Product Id : {{ product.id }}</p>
+                      <button (click)="getDetails('details',product.id)">Details</button>
+                    </div>
+                  </div>
+            </li>
+        </ul>
+    </div>
+</div>
