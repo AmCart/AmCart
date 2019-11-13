@@ -11804,11 +11804,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\NAGP\\Year 1\\NAGP Ecommerce\\Login\\JWTAuthentication\\JWTAuthentication\\JWTAuthentication.csproj",
+      "projectUniqueName": "D:\\NAGP\\Year 1\\NAGP Ecommerce\\Final\\JWTAuthentication\\JWTAuthentication\\JWTAuthentication.csproj",
       "projectName": "JWTAuthentication",
-      "projectPath": "D:\\NAGP\\Year 1\\NAGP Ecommerce\\Login\\JWTAuthentication\\JWTAuthentication\\JWTAuthentication.csproj",
+      "projectPath": "D:\\NAGP\\Year 1\\NAGP Ecommerce\\Final\\JWTAuthentication\\JWTAuthentication\\JWTAuthentication.csproj",
       "packagesPath": "C:\\Users\\sachinbansal\\.nuget\\packages\\",
-      "outputPath": "D:\\NAGP\\Year 1\\NAGP Ecommerce\\Login\\JWTAuthentication\\JWTAuthentication\\obj\\",
+      "outputPath": "D:\\NAGP\\Year 1\\NAGP Ecommerce\\Final\\JWTAuthentication\\JWTAuthentication\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

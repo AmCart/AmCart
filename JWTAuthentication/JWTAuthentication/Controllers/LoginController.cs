@@ -4,7 +4,9 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using JWTAuthentication.DTO;
 using JWTAuthentication.Models;
+using JWTAuthentication.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -20,50 +22,43 @@ namespace JWTAuthentication.Controllers
         {
         }
 
+
         [AllowAnonymous]
         [HttpPost]
-        public IActionResult Login([FromBody]User login)
+        public IActionResult Register([FromBody]UserDto userDto)
         {
-            IActionResult response = Unauthorized();
-            var user = AuthenticateUser(login);
+            IActionResult response = Conflict();
+            var user = UserService.Instance.RegisterUser(userDto);
 
             if (user != null)
             {
-                var tokenString = GenerateJSONWebToken(user);
+                var tokenString = UserService.Instance.GenerateJSONWebToken(user);
                 response = Ok(new { token = tokenString });
             }
-
             return response;
         }
 
-        private string GenerateJSONWebToken(User userInfo)
+        [AllowAnonymous]
+        [HttpPost]
+        public IActionResult Login([FromBody]UserDto userDto)
         {
-            //TODO: Make this configurable
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("SecretKey"));
-            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+            IActionResult response = Unauthorized();
+            var user = UserService.Instance.AuthenticateUser(userDto);
 
-            var token = new JwtSecurityToken(null, null, null, expires: DateTime.Now.AddMinutes(120),signingCredentials: credentials);
-
-            return new JwtSecurityTokenHandler().WriteToken(token);
+            if (user != null)
+            {
+                var tokenString = UserService.Instance.GenerateJSONWebToken(user);
+                response = Ok(new { token = tokenString });
+            }
+            return response;
         }
 
-        private User AuthenticateUser(User login)
+        [HttpPost]
+        public IActionResult Test([FromBody]string jwtToken)
         {
-            User user = null;
-
-            //Validate the User Credentials  
-            //Demo Purpose, I have Passed HardCoded User Information  
-            //if (login.Username == "SachinBansal" && login.Password == "SachinBansal")
-            {
-                user = new User
-                {
-                    Username = login.Username,
-                    Password = login.Password,
-                    FirstName = "Sachin",
-                    LastName = "Bansal"
-                };
-            }
-            return user;
+            IActionResult response = Unauthorized();
+            
+            return response;
         }
     }
 }

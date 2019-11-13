@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace JWTAuthentication.Models
+namespace JWTAuthentication.DTO
 {
-    public class User
+    public class UserDto
     {
         public string Name
         {
