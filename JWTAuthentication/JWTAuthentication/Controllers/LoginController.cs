@@ -28,7 +28,7 @@ namespace JWTAuthentication.Controllers
         public IActionResult Register([FromBody]UserDto userDto)
         {
             IActionResult response = Conflict();
-            var user = UserService.Instance.RegisterUser(userDto);
+            var user = UserService.Instance.Register(userDto);
 
             if (user != null)
             {
@@ -43,7 +43,7 @@ namespace JWTAuthentication.Controllers
         public IActionResult Login([FromBody]UserDto userDto)
         {
             IActionResult response = Unauthorized();
-            var user = UserService.Instance.AuthenticateUser(userDto);
+            var user = UserService.Instance.Login(userDto);
 
             if (user != null)
             {
@@ -57,6 +57,18 @@ namespace JWTAuthentication.Controllers
         public IActionResult Test([FromBody]string jwtToken)
         {
             IActionResult response = Unauthorized();
+            
+            try
+            {
+                if (UserService.Instance.ValidateToken(jwtToken))
+                {
+                    response = Ok();
+                }
+            }
+            catch
+            {
+
+            }
             
             return response;
         }

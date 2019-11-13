@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -43,7 +44,7 @@ namespace JWTAuthentication.Services
             users = new List<User>();
         }
 
-        public User RegisterUser(UserDto userDto)
+        public User Register(UserDto userDto)
         {
             User registeredUser = null;
             
@@ -65,7 +66,7 @@ namespace JWTAuthentication.Services
             return registeredUser;
         }
 
-        public User AuthenticateUser(UserDto login)
+        public User Login(UserDto login)
         {
             return users.FirstOrDefault(user => user.Email == login.Email && user.Password == login.Password);
         }
@@ -80,6 +81,24 @@ namespace JWTAuthentication.Services
             var token = new JwtSecurityToken(null, null, null, expires: DateTime.Now.AddMinutes(120), signingCredentials: credentials);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+
+        public bool ValidateToken(string authToken)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var validationParameters = GetValidationParameters();
+
+            SecurityToken validatedToken;
+            IPrincipal principal = tokenHandler.ValidateToken(authToken, validationParameters, out validatedToken);
+            return true;
+        }
+
+        private static TokenValidationParameters GetValidationParameters()
+        {
+            return new TokenValidationParameters()
+            {
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("SecretKey")) // The same key as the one that generate the token
+            };
         }
     }
 }
