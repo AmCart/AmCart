@@ -1,0 +1,13 @@
+D:\NAGP\Year 1\NAGP Ecommerce\Login\JWTAuthentication\JWTAuthentication\bin\Debug\netcoreapp2.1\JWTAuthentication.deps.json
+D:\NAGP\Year 1\NAGP Ecommerce\Login\JWTAuthentication\JWTAuthentication\bin\Debug\netcoreapp2.1\JWTAuthentication.runtimeconfig.json
+D:\NAGP\Year 1\NAGP Ecommerce\Login\JWTAuthentication\JWTAuthentication\bin\Debug\netcoreapp2.1\JWTAuthentication.runtimeconfig.dev.json
+D:\NAGP\Year 1\NAGP Ecommerce\Login\JWTAuthentication\JWTAuthentication\bin\Debug\netcoreapp2.1\JWTAuthentication.dll
+D:\NAGP\Year 1\NAGP Ecommerce\Login\JWTAuthentication\JWTAuthentication\bin\Debug\netcoreapp2.1\JWTAuthentication.pdb
+D:\NAGP\Year 1\NAGP Ecommerce\Login\JWTAuthentication\JWTAuthentication\obj\Debug\netcoreapp2.1\JWTAuthentication.csproj.CoreCompileInputs.cache
+D:\NAGP\Year 1\NAGP Ecommerce\Login\JWTAuthentication\JWTAuthentication\obj\Debug\netcoreapp2.1\JWTAuthentication.RazorAssemblyInfo.cache
+D:\NAGP\Year 1\NAGP Ecommerce\Login\JWTAuthentication\JWTAuthentication\obj\Debug\netcoreapp2.1\JWTAuthentication.RazorAssemblyInfo.cs
+D:\NAGP\Year 1\NAGP Ecommerce\Login\JWTAuthentication\JWTAuthentication\obj\Debug\netcoreapp2.1\JWTAuthentication.AssemblyInfoInputs.cache
+D:\NAGP\Year 1\NAGP Ecommerce\Login\JWTAuthentication\JWTAuthentication\obj\Debug\netcoreapp2.1\JWTAuthentication.AssemblyInfo.cs
+D:\NAGP\Year 1\NAGP Ecommerce\Login\JWTAuthentication\JWTAuthentication\obj\Debug\netcoreapp2.1\JWTAuthentication.RazorTargetAssemblyInfo.cache
+D:\NAGP\Year 1\NAGP Ecommerce\Login\JWTAuthentication\JWTAuthentication\obj\Debug\netcoreapp2.1\JWTAuthentication.dll
+D:\NAGP\Year 1\NAGP Ecommerce\Login\JWTAuthentication\JWTAuthentication\obj\Debug\netcoreapp2.1\JWTAuthentication.pdb
