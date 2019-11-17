@@ -1,9 +1,7 @@
-﻿using IdentityManagement.DTO;
-using IdentityManagement.Models;
-using System;
+﻿using IdentityManagement.Models;
+using IdentityManagement.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace IdentityManagement.Services
 {
@@ -40,18 +38,19 @@ namespace IdentityManagement.Services
             users = new List<User>();
         }
 
-        public User Register(UserDto userDto)
+        public User Register(RegisterViewModel registerViewModel)
         {
             User registeredUser = null;
 
-            if (!users.Any(user => user.Email == userDto.Email))
+            if (!users.Any(user => user.Email == registerViewModel.Email))
             {
                 registeredUser = new User()
                 {
-                    Name = userDto.Name,
-                    Password = userDto.Password,
-                    Email = userDto.Email,
-                    PhoneNumber = userDto.PhoneNumber
+                    Name = registerViewModel.Name,
+                    Password = registerViewModel.Password,
+                    Email = registerViewModel.Email,
+                    PhoneNumber = registerViewModel.PhoneNumber,
+                    Username = registerViewModel.Username
                 };
                 users.Add(registeredUser);
             }
@@ -62,9 +61,9 @@ namespace IdentityManagement.Services
             return registeredUser;
         }
 
-        public User Login(string userName, string password)
+        public User Login(LoginViewModel loginViewModel)
         {
-            return users.FirstOrDefault(user => user.Email == userName && user.Password == password);
+            return users.FirstOrDefault(user => user.Username == loginViewModel.Username && user.Password == loginViewModel.Password);
         }
     }
 }

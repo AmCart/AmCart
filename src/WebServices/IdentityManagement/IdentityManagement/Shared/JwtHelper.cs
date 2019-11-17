@@ -12,7 +12,7 @@ namespace IdentityManagement.Shared
 {
     public static class JwtHelper
     {
-        private const string SECRET_KEY = "SECRET_KEY";
+        private const string SECRET_KEY = "THIS_IS_SECRET_KEY";
         private static readonly SymmetricSecurityKey SECURITY_KEY = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(SECRET_KEY));
 
         public static string GenerateJSONWebToken(string username)

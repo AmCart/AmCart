@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace IdentityManagement.Models
+﻿namespace IdentityManagement.Models
 {
     public class User
     {
@@ -13,6 +8,11 @@ namespace IdentityManagement.Models
         }
 
         public string Email
+        {
+            get; set;
+        }
+
+        public string Username
         {
             get; set;
         }

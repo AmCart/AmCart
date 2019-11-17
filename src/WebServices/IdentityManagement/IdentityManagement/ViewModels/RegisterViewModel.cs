@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace IdentityManagement.DTO
+﻿namespace IdentityManagement.ViewModels
 {
-    public class UserDto
+    public class RegisterViewModel
     {
         public string Name
         {
@@ -13,6 +8,11 @@ namespace IdentityManagement.DTO
         }
 
         public string Email
+        {
+            get; set;
+        }
+
+        public string Username
         {
             get; set;
         }
