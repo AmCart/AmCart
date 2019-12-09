@@ -6,11 +6,12 @@ using IdentityServer4;
 using IdentityServer4.Quickstart.UI;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
 
-namespace IdentityManagement
+namespace IAMService
 {
     public class Startup
     {
@@ -41,43 +42,44 @@ namespace IdentityManagement
                 iis.AutomaticAuthentication = false;
             });
 
-            #region  Identity Server 4 Configurations
+            var connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             var builder = services.AddIdentityServer(options =>
-            {
-                options.Events.RaiseErrorEvents = true;
-                options.Events.RaiseInformationEvents = true;
-                options.Events.RaiseFailureEvents = true;
-                options.Events.RaiseSuccessEvents = true;
-            })
-                .AddTestUsers(TestUsers.Users);
+                {
+                    options.Events.RaiseErrorEvents = true;
+                    options.Events.RaiseInformationEvents = true;
+                    options.Events.RaiseFailureEvents = true;
+                    options.Events.RaiseSuccessEvents = true;
+                })
+                .AddTestUsers(TestUsers.Users)
+                // this adds the config data from DB (clients, resources, CORS)
+                .AddConfigurationStore(options =>
+                {
+                    options.ConfigureDbContext = builder => builder.UseSqlite(connectionString);
+                })
+                // this adds the operational data from DB (codes, tokens, consents)
+                .AddOperationalStore(options =>
+                {
+                    options.ConfigureDbContext = builder => builder.UseSqlite(connectionString);
 
-            // in-memory, code config
-            builder.AddInMemoryIdentityResources(Config.Ids);
-            builder.AddInMemoryApiResources(Config.Apis);
-            builder.AddInMemoryClients(Config.Clients);
-
-            // or in-memory, json config
-            //builder.AddInMemoryIdentityResources(Configuration.GetSection("IdentityResources"));
-            //builder.AddInMemoryApiResources(Configuration.GetSection("ApiResources"));
-            //builder.AddInMemoryClients(Configuration.GetSection("clients"));
-
-            #endregion
+                    // this enables automatic token cleanup. this is optional.
+                    options.EnableTokenCleanup = true;
+                });
 
             // not recommended for production - you need to store your key material somewhere secure
             builder.AddDeveloperSigningCredential();
 
-            //services.AddAuthentication()
-            //    .AddGoogle(options =>
-            //    {
-            //        options.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
+            services.AddAuthentication()
+                .AddGoogle(options =>
+                {
+                    options.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
 
-            //        // register your IdentityServer with Google at https://console.developers.google.com
-            //        // enable the Google+ API
-            //        // set the redirect URI to http://localhost:5000/signin-google
-            //        options.ClientId = "copy client ID from Google here";
-            //        options.ClientSecret = "copy client secret from Google here";
-            //    });
+                    // register your IdentityServer with Google at https://console.developers.google.com
+                    // enable the Google+ API
+                    // set the redirect URI to http://localhost:5000/signin-google
+                    options.ClientId = "copy client ID from Google here";
+                    options.ClientSecret = "copy client secret from Google here";
+                });
         }
 
         public void Configure(IApplicationBuilder app)
@@ -85,6 +87,7 @@ namespace IdentityManagement
             if (Environment.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseDatabaseErrorPage();
             }
 
             app.UseStaticFiles();
