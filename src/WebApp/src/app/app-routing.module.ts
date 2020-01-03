@@ -4,6 +4,7 @@ import { ProductComponent } from './product-listing/product/product.component';
 import { ProductListingComponent } from './product-listing/product-listing/product-listing.component';
 import { LoginComponent } from './user-login/login/login.component';
 import { RegisterComponent } from './user-login/register/register.component';
+import { CartComponent } from './cart/cart/cart.component';
 
 
 const routes: Routes = [
@@ -25,6 +26,11 @@ const routes: Routes = [
   {
   path:'details/:id', 
   component: ProductComponent, 
+  pathMatch: 'full'
+},
+{
+  path:'cart', 
+  component: CartComponent, 
   pathMatch: 'full'
 }];
 

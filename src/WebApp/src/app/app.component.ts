@@ -9,10 +9,8 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'AmCart';
 
-  constructor(private router: Router) {}
-
-  getDetails(url,id){
-    debugger;
-    this.router.navigateByUrl(`${url}`)
+  constructor(private router: Router) {
+    this.router.navigateByUrl('products')
   }
+
 }

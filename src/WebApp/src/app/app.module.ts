@@ -9,13 +9,17 @@ import { RegisterComponent } from './user-login/register/register.component';
 import { HeaderComponent } from './header/header/header.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JwtInterceptor } from './helpers/jwt.inceptors';
+import { FooterComponent } from './footer/footer/footer.component';
+import { CartComponent } from './cart/cart/cart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    HeaderComponent
+    HeaderComponent,
+    FooterComponent,
+    CartComponent
   ],
   imports: [
     HttpClientModule,

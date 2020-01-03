@@ -20,4 +20,13 @@ export class HeaderComponent implements OnInit {
   register(){
     this.router.navigateByUrl('/register')
   }
+
+  
+  getDetails(url){
+    this.router.navigateByUrl(`${url}`)
+  }
+
+  getCartDetails(url){
+    this.router.navigateByUrl(`${url}`)
+  }
 }
