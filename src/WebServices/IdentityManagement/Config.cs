@@ -2,6 +2,7 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
+using IdentityServer4;
 using IdentityServer4.Models;
 using System.Collections.Generic;
 
@@ -56,7 +57,45 @@ namespace IdentityManagement
                     AllowOfflineAccess = true,
                     AllowedScopes = { "openid", "profile", "api1" }
                 },
+                new Client
+                {
+                    ClientId = "spaCodeClient",
+                    ClientName = "SPA Code Client",
+                    AccessTokenType = AccessTokenType.Jwt,
+                    AccessTokenLifetime = 330,// 330 seconds, default 60 minutes
+                    IdentityTokenLifetime = 30,
 
+                    RequireClientSecret = false,
+                    AllowedGrantTypes = GrantTypes.Code,
+                    RequirePkce = true,
+
+                    AllowAccessTokensViaBrowser = true,
+                    RedirectUris = new List<string>
+                    {
+                        "https://localhost:4200/silent-renew.html",
+                        "https://localhost:4200",
+                        "http://localhost:4200/silent-renew.html",
+                        "http://localhost:4200",
+                        
+                    },
+                    PostLogoutRedirectUris = new List<string>
+                    {
+                        "https://localhost:4200/unauthorized",
+                        "https://localhost:4200",
+                        "http://localhost:4200/unauthorized",
+                        "http://localhost:4200"
+                    },
+                    AllowedCorsOrigins = new List<string>
+                    {
+                        "https://localhost:4200",
+                        "http://localhost:4200"
+                    },
+                    AllowedScopes = new List<string>
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile
+                    }
+                },
                 // SPA client using code flow + pkce
                 new Client
                 {

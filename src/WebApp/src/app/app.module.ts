@@ -11,6 +11,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JwtInterceptor } from './helpers/jwt.inceptors';
 import { FooterComponent } from './footer/footer/footer.component';
 import { CartComponent } from './cart/cart/cart.component';
+import { AuthService } from './services/auth.service';
+import { OidcSecurityService, AuthModule } from 'angular-auth-oidc-client';
 
 @NgModule({
   declarations: [
@@ -27,10 +29,13 @@ import { CartComponent } from './cart/cart/cart.component';
     AppRoutingModule,
     ProductListingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AuthModule.forRoot()
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    AuthService,
+    OidcSecurityService,
   ],
   bootstrap: [AppComponent]
 })
